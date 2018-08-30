@@ -11,7 +11,7 @@ while file_found == False:
 
 	try:
 		print("Loading file.")
-		o_tree = ET.parse(file_name) 	#Read the XML file from the disk
+		o_tree = ET.parse('input/'+ file_name) 	#Read the XML file from the disk
 		xml_file = o_tree.getroot() 
 		print()
 		print("File Loaded.")
@@ -27,9 +27,9 @@ while db_found==False:
 	database_name=input("Please enter the Database file name: ")
 	print()
 	
-	if os.path.isfile(database_name) == True:
+	if os.path.isfile('db/'+database_name) == True:
 		print("Loading Database.")
-		db = sqlite3.connect(database_name) 	#Connect to the Database
+		db = sqlite3.connect('db/'+database_name) 	#Connect to the Database
 		c = db.cursor() 	#Create a variable for the db coursor 
 		print()
 		print("Database loaded.")
@@ -177,7 +177,7 @@ else: 	#If one or more words have been replaced the indented lines of code will 
 
 
 	print("Creating new XML file with placeholders present.") 	#Lets the user know that the changes are being written to a new XML file with placeholers present.
-	o_tree.write('Report with placeholders.twb', xml_declaration=True, encoding='utf-8') 	#writes all changes to a new XML file called 'Report with placeholders.twb' with XML declaration at the top in UFT-8 encoding
+	o_tree.write('output/Report with placeholders.twb', xml_declaration=True, encoding='utf-8') 	#writes all changes to a new XML file called 'Report with placeholders.twb' with XML declaration at the top in UFT-8 encoding
 
 	table_name=input("Please enter a name for the table in the Database: ") 	#Asks user for name of Table in the database that he would like the placeholders to be stored in.
 
