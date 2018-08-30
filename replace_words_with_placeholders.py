@@ -1,18 +1,43 @@
 import lxml.etree as ET 	#Import XML ETree tool into the script
 import sqlite3		#Import SQLite3 into the script
+import os.path
 
 
-file_name=input("Please enter the Tableou file name: ")
-database_name=input("Please enter the Database file name: ")
+file_found=False
 
-o_tree = ET.parse(file_name) 	#Read the XML file from the disk
-xml_file = o_tree.getroot() 
+while file_found == False:
+	file_name=input("Please enter the Tableou file name: ")
+	print()
+
+	try:
+		print("Loading file.")
+		o_tree = ET.parse(file_name) 	#Read the XML file from the disk
+		xml_file = o_tree.getroot() 
+		print()
+		print("File Loaded.")
+		print()
+		file_found=True
+	except:
+		print("Error, file does not exist, make sure to include the extension when entering name.")
 
 
-db = sqlite3.connect(database_name) 	#Connect to the Database
-c = db.cursor() 	#Create a variable for the db coursor 
+db_found=False
 
-
+while db_found==False:
+	database_name=input("Please enter the Database file name: ")
+	print()
+	
+	if os.path.isfile(database_name) == True:
+		print("Loading Database.")
+		db = sqlite3.connect(database_name) 	#Connect to the Database
+		c = db.cursor() 	#Create a variable for the db coursor 
+		print()
+		print("Database loaded.")
+		print()
+		db_found=True
+	else:
+		print("Error, file does not exist, make sure to include the extension when entering name.")
+		
 end = False		#Create end Variable for loop
 found = False 	#Create found variable for loop
 
