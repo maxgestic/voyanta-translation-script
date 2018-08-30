@@ -170,17 +170,19 @@ else: 	#If one or more words have been replaced the indented lines of code will 
 
 
 	replaced_amount=counter 	#copies the value of counter into replaced amount
+	print()
 	print("Amount of words Replaced: " +str(replaced_amount)) 	#Displays how many words where replaced in total
-
+	print()
 	print("You have replaced thses words: ") 	#Prints to the user the list of words that have been replaced
 	print(', '.join(replaced_text)) 	#Prints array as joined list
-
-
-	print("Creating new XML file with placeholders present.") 	#Lets the user know that the changes are being written to a new XML file with placeholers present.
-	o_tree.write('output/Report with placeholders.twb', xml_declaration=True, encoding='utf-8') 	#writes all changes to a new XML file called 'Report with placeholders.twb' with XML declaration at the top in UFT-8 encoding
-
+	print()
+	output_name=input("What would you like to save the new XML file under? ")
+	print()
+	print("Creating new XML file with placeholders present under /output/"+output_name+".twb") 	#Lets the user know that the changes are being written to a new XML file with placeholers present.
+	o_tree.write('output/'+output_name+'.twb', xml_declaration=True, encoding='utf-8') 	#writes all changes to a new XML file called 'Report with placeholders.twb' with XML declaration at the top in UFT-8 encoding
+	print()
 	table_name=input("Please enter a name for the table in the Database: ") 	#Asks user for name of Table in the database that he would like the placeholders to be stored in.
-
+	print()
 	print("Writing Changes to Database.") 	#Notifies the user that the placehoders are being added to the database.
 
 	c.execute("""CREATE TABLE """+table_name+"""(id, e, g)""") 	#Creates a table with the name the user entered with three columns. 
